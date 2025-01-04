@@ -13,7 +13,6 @@ export const SubmitButton = () => {
   const [modalData, setModalData] = useState(null);
 
   async function handleClick() {
-    console.log({ nodes, edges });
     try {
       const response = await fetch(API_URL, {
         method: "POST",

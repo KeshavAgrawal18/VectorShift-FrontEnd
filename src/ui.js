@@ -15,9 +15,9 @@ import { FileUploadNode } from "./nodes/fileUploadNode";
 import { FileSaveNode } from "./nodes/fileSaveNode";
 import { NoteNode } from "./nodes/noteNode";
 import { TextToFileNode } from "./nodes/textToFileNode";
+import { URLNode } from "./nodes/urlNode";
 
 import "reactflow/dist/style.css";
-import { URLNode } from "./nodes/urlNode";
 
 const gridSize = 20;
 const proOptions = { hideAttribution: true };

@@ -1,7 +1,7 @@
 import TextSnippetOutlinedIcon from "@mui/icons-material/TextSnippetOutlined";
 import { BaseNode } from "../components/BaseNode";
 import { useState } from "react";
-import TextareaAutosize from "../components/TextareaAutoSize";
+import EditableDiv from "../components/EditableDiv";
 
 export const TextNode = ({ id, data }) => {
   const [dimensions, setDimensions] = useState({ width: 250, height: 100 }); // Updated initial height to 200
@@ -18,7 +18,7 @@ export const TextNode = ({ id, data }) => {
     ),
     content: (
       <>
-        <TextareaAutosize
+        <EditableDiv
           onHeightChange={handleHeightChange}
           setVariables={setVariables}
         />

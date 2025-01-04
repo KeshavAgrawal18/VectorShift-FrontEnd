@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Handle } from "reactflow";
 import { useStore } from "../store";
+import { styles as generateHandleStyles } from "../styles/customHandle";
 
 const CustomHandle = ({ id, idx, length, type = "source", label }) => {
   const isSource = type === "source";
@@ -17,49 +18,12 @@ const CustomHandle = ({ id, idx, length, type = "source", label }) => {
   const handleMouseEnter = () => setIsActive(true);
   const handleMouseLeave = () => setIsActive(false);
 
-  const styles = {
-    handle: {
-      top: `${topHeight}%`,
-      border: `2px solid ${
-        isActive
-          ? isSource
-            ? "#004ba0"
-            : "#c2185b"
-          : isSource
-          ? "#1976d2"
-          : "#ff4081"
-      }`,
-      boxShadow: isActive
-        ? `0 0 8px ${isSource ? "#004ba0" : "#c2185b"}`
-        : "none",
-      width: "10px",
-      height: "10px",
-      background: "white",
-      borderRadius: "50%",
-    },
-    connectedDot: {
-      content: '""',
-      position: "absolute",
-      top: "50%",
-      left: "50%",
-      transform: "translate(-50%, -50%)",
-      width: "4px",
-      height: "4px",
-      background: isSource ? "#1976d2" : "#ff4081",
-      borderRadius: "50%",
-      display: isConnected ? "block" : "none",
-    },
-    label: {
-      zIndex: 100,
-      position: "absolute",
-      top: `${topHeight}%`,
-      [isSource ? "left" : "right"]: "calc(100% + 8px)",
-      fontSize: "12px",
-      color: "#333",
-      fontWeight: "bold",
-      whiteSpace: "nowrap",
-    },
-  };
+  const styles = generateHandleStyles({
+    isActive,
+    topHeight,
+    isConnected,
+    isSource,
+  });
 
   return (
     <>

@@ -111,6 +111,7 @@ export const BaseNode = ({ id, config }) => {
       {inputs &&
         inputs.map((input, idx) => (
           <CustomHandle
+            key={`${id}-${input.id}`}
             id={`${id}-${input.id}`}
             idx={idx}
             length={inputs.length}
@@ -121,6 +122,7 @@ export const BaseNode = ({ id, config }) => {
       {outputs &&
         outputs.map((output, idx) => (
           <CustomHandle
+            key={`${id}-${output.id}`}
             id={`${id}-${output.id}`}
             idx={idx}
             length={outputs.length}
