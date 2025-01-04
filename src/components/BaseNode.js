@@ -53,13 +53,13 @@ export const BaseNode = ({ id, config }) => {
         width: 250,
         padding: "12px",
         border: isActive
-          ? "3px solid rgb(100, 80, 200)" // Darker border when active
-          : "2px solid rgb(211, 195, 246)", // Default border
+          ? "3px solid rgb(100, 80, 200)"
+          : "2px solid rgb(211, 195, 246)",
         borderRadius: "8px",
         boxShadow: isActive
-          ? "0px 6px 12px rgba(0, 0, 0, 0.3)" // Darker shadow when active
-          : "0px 4px 6px rgba(0, 0, 0, 0.1)", // Default shadow
-        transition: "all 0.2s ease-in-out", // Smooth transition
+          ? "0px 6px 12px rgba(0, 0, 0, 0.3)"
+          : "0px 4px 6px rgba(0, 0, 0, 0.1)",
+        transition: "all 0.2s ease-in-out",
         ...styles,
       }}
     >
