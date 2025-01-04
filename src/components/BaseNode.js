@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Card, CardContent, Typography, Box } from "@mui/material";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import CustomHandle from "./customHandle";
@@ -8,23 +8,58 @@ export const BaseNode = ({ id, config }) => {
   const { header, content, inputs, outputs, styles } = config;
   const { removeNode } = useStore();
   const [crossClicked, setCrossClicked] = useState(false);
+  const [isActive, setIsActive] = useState(false);
+  const nodeRef = useRef(null);
 
   const handleCrossClick = () => {
     if (crossClicked) {
       removeNode(id);
     } else {
       setCrossClicked(true);
+      setTimeout(() => setCrossClicked(false), 6000);
     }
   };
 
+  const handleClickInside = (event) => {
+    event.stopPropagation(); // Prevent bubbling to the document listener
+    setIsActive(true);
+  };
+
+  const handleClickOutside = (event) => {
+    if (nodeRef.current && !nodeRef.current.contains(event.target)) {
+      setIsActive(false);
+    }
+  };
+
+  useEffect(() => {
+    const handleDocumentClick = (event) => {
+      handleClickOutside(event);
+    };
+
+    // Add event listener to the document
+    document.addEventListener("mousedown", handleDocumentClick);
+
+    return () => {
+      // Remove the event listener on cleanup
+      document.removeEventListener("mousedown", handleDocumentClick);
+    };
+  }, []);
+
   return (
     <Card
+      ref={nodeRef}
+      onClick={handleClickInside}
       style={{
         width: 250,
         padding: "12px",
-        border: "2px solid rgb(211, 195, 246)",
+        border: isActive
+          ? "3px solid rgb(100, 80, 200)" // Darker border when active
+          : "2px solid rgb(211, 195, 246)", // Default border
         borderRadius: "8px",
-        boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+        boxShadow: isActive
+          ? "0px 6px 12px rgba(0, 0, 0, 0.3)" // Darker shadow when active
+          : "0px 4px 6px rgba(0, 0, 0, 0.1)", // Default shadow
+        transition: "all 0.2s ease-in-out", // Smooth transition
         ...styles,
       }}
     >
