@@ -35,7 +35,7 @@ const EditableDiv = ({ onHeightChange, setVariables }) => {
       setStyle(divRef.current, { height: "auto" });
       const newHeight = divRef.current.scrollHeight;
       setStyle(divRef.current, { height: `${newHeight}px` });
-      onHeightChange?.(newHeight + (error ? 24 : 0));
+      onHeightChange?.(newHeight + (error ? 30 : 0));
     }
   };
 
