@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from "react";
 import { styles } from "../styles/editableDiv";
 
 const EditableDiv = ({ onHeightChange, setVariables }) => {
-  const [rawText, setRawText] = useState("");
+  const [rawText, setRawText] = useState("text");
   const [error, setError] = useState("");
   const divRef = useRef(null);
 
@@ -35,7 +35,7 @@ const EditableDiv = ({ onHeightChange, setVariables }) => {
       setStyle(divRef.current, { height: "auto" });
       const newHeight = divRef.current.scrollHeight;
       setStyle(divRef.current, { height: `${newHeight}px` });
-      onHeightChange?.(newHeight + (error ? 30 : 0));
+      onHeightChange?.(newHeight + (error ? 24 : 0));
     }
   };
 
@@ -112,11 +112,8 @@ const EditableDiv = ({ onHeightChange, setVariables }) => {
 
   useEffect(() => {
     renderContent();
-  }, [rawText]);
-
-  useEffect(() => {
     adjustHeight();
-  }, [error]);
+  }, [rawText]);
 
   return (
     <>

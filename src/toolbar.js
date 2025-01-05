@@ -64,6 +64,7 @@ export const PipelineToolbar = () => {
           display: "flex",
           flexWrap: "wrap",
           gap: "10px",
+          rowGap: "30px",
         }}
       >
         {toolbarItems.map(({ type, icon, label }) => (
